@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background: #f5f5f5;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .category {
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .category h2 {
+            color: #3498db;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .image-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e9ecef;
+            position: relative; /* For fallback placeholder */
+        }
+        .image-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .image-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .image-item img[src=""] {
+            display: none; /* Hide broken images */
+        }
+        /* Fallback placeholder for broken images */
+        .image-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: none; /* Hidden by default */
+        }
+        .image-item img:not([src])::after,
+        .image-item img[src=""],
+        .image-item img:not([src]) + .image-name::before {
+            display: block;
+            content: 'Image not found';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #999;
+            font-size: 12px;
+            text-align: center;
+            z-index: 1;
+        }
+        .image-name {
+            padding: 10px;
+            font-size: 14px;
+            color: #495057;
+            text-align: center;
+            word-break: break-word;
+        }
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .category-count {
+            background: #3498db;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            .category {
+                padding: 15px;
+            }
+            .image-item img {
+                height: 120px;
+            }
+            .image-item::before {
+                height: 120px;
+            }
+        }
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 10px;
+            }
+            .image-name {
+                font-size: 12px;
+                padding: 8px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            .category h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Image Collection</h1>
+            <p>Organized by categories</p>
+        </header>
+        <!-- CyberPunk Category -->
+        <section class="category">
+            <div class="category-header">
+                <h2>CyberPunk</h2>
+                <span class="category-count">25 images</span>
+            </div>
+            <div class="gallery">
+                <div class="image-item">
+                    <img src="CyberPunk/anime bluescreen.jpg" alt="anime bluescreen" onerror="this.src=''">
+                    <div class="image-name">anime bluescreen.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/blank cd.jpg" alt="blank cd" onerror="this.src=''">
+                    <div class="image-name">blank cd.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/bubblegum Crisis.jpg" alt="bubblegum Crisis" onerror="this.src=''">
+                    <div class="image-name">bubblegum Crisis.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/clear intent .jpg" alt="clear intent" onerror="this.src=''">
+                    <div class="image-name">clear intent .jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/cloud computer.jpg" alt="cloud computer" onerror="this.src=''">
+                    <div class="image-name">cloud computer.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/commander.jpg" alt="commander" onerror="this.src=''">
+                    <div class="image-name">commander.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/compulsive.jpg" alt="compulsive" onerror="this.src=''">
+                    <div class="image-name">compulsive.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/Cyberpunk hacker down surrounded by tech.jpg" alt="Cyberpunk hacker down surge" onerror="this.src=''">
+                    <div class="image-name">Cyberpunk hacker down surge.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/decay.jpg" alt="decay" onerror="this.src=''">
+                    <div class="image-name">decay.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/dvd.jpg" alt="dvd" onerror="this.src=''">
+                    <div class="image-name">dvd.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/earth.jpg" alt="earth" onerror="this.src=''">
+                    <div class="image-name">earth.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/Efecto.gif" alt="Efecto" onerror="this.src=''">
+                    <div class="image-name">Efecto.gif</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/googel 84.jpg" alt="googel 84" onerror="this.src=''">
+                    <div class="image-name">googel 84.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/internet explorer.jpg" alt="internet explorer" onerror="this.src=''">
+                    <div class="image-name">internet explorer.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/mass surveillance.jpg" alt="mass surveillance" onerror="this.src=''">
+                    <div class="image-name">mass surveillance.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/mechanized heart never misses a beat.jpg" alt="mechanized heart never misses" onerror="this.src=''">
+                    <div class="image-name">mechanized heart never misses.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/monitors n girl.jpg" alt="monitors n girl" onerror="this.src=''">
+                    <div class="image-name">monitors n girl.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/monitors.jpg" alt="monitors" onerror="this.src=''">
+                    <div class="image-name">monitors.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/new world .jpg" alt="new world" onerror="this.src=''">
+                    <div class="image-name">new world .jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/Retro Futuristic Elements.jpg" alt="Retro Futuristic Elements" onerror="this.src=''">
+                    <div class="image-name">Retro Futuristic Elements.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/spotify.jpg" alt="spotify" onerror="this.src=''">
+                    <div class="image-name">spotify.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/𝐔𝐩𝐥𝐢𝐧𝐤.jpg" alt="Uplink" onerror="this.src=''">
+                    <div class="image-name">Uplink.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/upload.gif" alt="upload" onerror="this.src=''">
+                    <div class="image-name">upload.gif</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/was failure an option.jpg" alt="was failure an option" onerror="this.src=''">
+                    <div class="image-name">was failure an option.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="CyberPunk/windows 84.jpg" alt="windows 84" onerror="this.src=''">
+                    <div class="image-name">windows 84.jpg</div>
+                </div>
+            </div>
+        </section>
+        <!-- Wallpapers-Banners-ProfilePics Category -->
+        <section class="category">
+            <div class="category-header">
+                <h2>Wallpapers-Banners-ProfilePics</h2>
+                <span class="category-count">3 images</span>
+            </div>
+            <div class="gallery">
+                <div class="image-item">
+                    <img src="Wallpapers-Banners-ProfilePics/castle.jpg" alt="castle" onerror="this.src=''">
+                    <div class="image-name">castle.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="Wallpapers-Banners-ProfilePics/Mikoyan-Gurevich MiG-21bis.jpeg" alt="Mikoyan-Gurevich MiG-21bis" onerror="this.src=''">
+                    <div class="image-name">Mikoyan-Gurevich MiG-21bis.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="Wallpapers-Banners-ProfilePics/star gd.jpg" alt="star gd" onerror="this.src=''">
+                    <div class="image-name">star gd.jpg</div>
+                </div>
+            </div>
+        </section>
+        <!-- WebCore Category -->
+        <section class="category">
+            <div class="category-header">
+                <h2>WebCore</h2>
+                <span class="category-count">6 images</span>
+            </div>
+            <div class="gallery">
+                <div class="image-item">
+                    <img src="WebCore/01010101010 gif.webp" alt="01010101010 gif" onerror="this.src=''">
+                    <div class="image-name">01010101010 gif.webp</div>
+                </div>
+                <div class="image-item">
+                    <img src="WebCore/always watching.jpg" alt="always watching" onerror="this.src=''">
+                    <div class="image-name">always watching.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="WebCore/blue bios.jpg" alt="blue bios" onerror="this.src=''">
+                    <div class="image-name">blue bios.jpg</div>
+                </div>
+               
+                <div class="image-item">
+                    <img src="WebCore/cd.jpg" alt="webcore image 4" onerror="this.src=''">
+                    <div class="image-name">webcore-image4.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="WebCore/webcore girl.jpg" alt="webcore image 5" onerror="this.src=''">
+                    <div class="image-name">webcore-image5.jpg</div>
+                </div>
+                <div class="image-item">
+                    <img src="WebCore/webcore untitled -paint.webp" alt="webcore image 6" onerror="this.src=''">
+                    <div class="image-name">webcore-image6.jpg</div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
