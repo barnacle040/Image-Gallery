@@ -11,11 +11,106 @@
             box-sizing: border-box;
             font-family: 'Courier New', monospace; /* Webcore touch: terminal-style font */
         }
+
+        /* Custom Scrollbar (Webkit Browsers) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111111;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00ffff; /* Neon Cyan */
+            border-radius: 4px;
+        }
+
+        /* Text Selection Style */
+        ::selection {
+            background: #00ffff; /* Neon Cyan background */
+            color: #000000;      /* Black text on selection */
+        }
+        
+        /* Blinking Text Animation */
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .blinking {
+            animation: blink 1s step-end infinite;
+            color: #ff00ff; /* Magenta for high contrast */
+        }
+
+        /* ---------------------------------------------------- */
+        /* --- NEW/UPDATED: MEDIA PLAYER & IMAGE POSITIONING --- */
+        /* ---------------------------------------------------- */
+        .music-player-container {
+            position: fixed; /* Keeps it locked to the screen */
+            top: 10px;
+            left: 10px;
+            z-index: 10000; /* Ensures it is always on top */
+            border: 2px solid #00ffff; /* Cyber border */
+            border-radius: 5px;
+            background: #1a1a2e; /* Matches the dark background */
+            padding: 5px; /* Give it some breathing room */
+            display: flex; /* Use flexbox to arrange items inside */
+            flex-direction: column; /* Stack image and controls vertically */
+            align-items: center;
+            gap: 5px; /* Space between the image and the audio controls */
+        }
+
+        .album-art {
+            width: 120px; /* Square size */
+            height: 120px;
+            object-fit: cover; /* Ensures the image fills the square */
+            border: 1px solid #ff00ff00;
+            border-radius: 3px;
+        }
+
+        /* Base Body and CRT Text Effect */
         body {
-            background: #1e1e24; /* Deep navy-gray background */
+            /* Tiled Dark Navy Grid/Noise Background */
+            background-color: #1a1a2e; /* Deep Navy base color */
+            background-image: repeating-linear-gradient(
+                45deg,
+                rgba(0, 0, 0, 0.1),
+                rgba(0, 0, 0, 0.1) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            background-size: 8px 8px; /* Control the tile size */
             color: #b3b3ff; /* Lavender-blue text */
             padding: 20px;
+            text-shadow: 0 0 1px #00ffff; /* CRT Text Shadow Effect */
+            cursor: pointer;
+            /* MODIFIED: Increased padding to the top to safely clear the fixed music widget */
+            padding-top: 160px; 
         }
+
+        /* Custom HR Divider (Animated GIF Placeholder Style) */
+        hr {
+            border: 0;
+            height: 4px;
+            background: linear-gradient(to right, #1a1a2e, #00ffff, #1a1a2e);
+            margin: 20px 0;
+            box-shadow: 0 0 5px #00ffff;
+        }
+
+        /* Link Styling */
+        a {
+            color: #00ffff; 
+            text-decoration: none;
+            transition: color 0.1s;
+        }
+        a:visited {
+            color: #442e4400; 
+        }
+        a:hover {
+            color: #00ff41; 
+            text-decoration: underline;
+        }
+        a:active {
+            color: #ffffff; 
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -24,27 +119,29 @@
             text-align: center;
             margin-bottom: 40px;
             padding: 20px;
-            background: #4a4a5e; /* Muted blue-gray for header */
+            background: #4a4a5e; 
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 255, 255, 0.1); /* Subtle cyan glow */
+            box-shadow: 0 2px 10px rgba(0, 255, 255, 0.1); 
         }
         h1 {
-            color: #00ffff; /* Bright cyan for title */
+            color: #00ffff; 
             margin-bottom: 10px;
-            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Glow effect */
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); 
         }
         .category {
             margin-bottom: 40px;
-            background: #4a4a5e; /* Muted blue-gray cards */
+            background: #4a4a5e; 
             border-radius: 10px;
             padding: 25px;
-            box-shadow: 0 2px 10px rgba(0, 255, 255, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 255, 255, 0.1), 
+                        inset 0 0 10px rgba(0, 0, 0, 0.5); /* 3D Inset Effect */
+            border: 2px solid #b3b3ff;
         }
         .category h2 {
-            color: #00ffff; /* Cyan headings */
+            color: #00ffff; 
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #b3b3ff; /* Lavender border */
+            border-bottom: 2px solid #b3b3ff; 
         }
         .gallery {
             display: grid;
@@ -52,38 +149,30 @@
             gap: 20px;
         }
         .image-item {
-            background: #2a2a3e; /* Darker variant for items */
+            background: #2a2a3e; 
             border-radius: 8px;
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid #00ffff; /* Cyan border */
-            position: relative; /* For fallback placeholder */
+            border: 1px solid #00ffff; 
+            position: relative; 
         }
         .image-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.5); /* Hot pink hover glow */
+            box-shadow: 0 5px 15px rgba(0, 191, 255, 0.6); 
         }
         .image-item img {
             width: 100%;
             height: 150px;
             object-fit: cover;
             display: block;
-            border-bottom: 1px solid #b3b3ff; /* Lavender separator */
+            border-bottom: 1px solid #b3b3ff; 
+            /* NEW: Low-Fi Image Filter */
+            filter: brightness(110%) contrast(110%);
         }
         .image-item img[src=""] {
-            display: none; /* Hide broken images */
+            display: none; 
         }
-        /* Fallback placeholder for broken images */
-        .image-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 150px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Keep original gradient as fallback */
-            display: none; /* Hidden by default */
-        }
+        
         .image-item img:not([src])::after,
         .image-item img[src=""],
         .image-item img:not([src]) + .image-name::before {
@@ -93,7 +182,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            color: #b3b3ff; /* Lavender error text */
+            color: #b3b3ff; 
             font-size: 12px;
             text-align: center;
             z-index: 1;
@@ -101,7 +190,7 @@
         .image-name {
             padding: 10px;
             font-size: 14px;
-            color: #b3b3ff; /* Consistent text color */
+            color: #b3b3ff; 
             text-align: center;
             word-break: break-word;
         }
@@ -112,73 +201,26 @@
             margin-bottom: 20px;
         }
         .category-count {
-            background: #00ffff; /* Cyan badge */
-            color: #1e1e24; /* Dark text on badge */
+            background: #00ffff; 
+            color: #1e1e24; 
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 14px;
         }
-        @media (max-width: 768px) {
-            .gallery {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 15px;
-            }
-            .category {
-                padding: 15px;
-            }
-            .image-item img {
-                height: 120px;
-            }
-            .image-item::before {
-                height: 120px;
-            }
-        }
-        @media (max-width: 480px) {
-            .gallery {
-                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-                gap: 10px;
-            }
-            .image-name {
-                font-size: 12px;
-                padding: 8px;
-            }
-            h1 {
-                font-size: 24px;
-            }
-            .category h2 {
-                font-size: 18px;
-            }
-        }
-        body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(transparent 50%, rgba(0, 255, 255, 0.03) 50%);
-    background-size: 100% 2px;
-    pointer-events: none;
-    z-index: -1;
-}
-.left-image {
-    float: left;
-    margin-right: 10px; /* Adds space between image and text */
-    width: 200px; /* Optional: Set a fixed width */
-}
-header {
+        
+        header {
             display: flex;
             align-items: center;
-            background: linear-gradient(to right, #0a0a0a, #1a1a2e); /* Dark cyberpunk gradient */
-            border-bottom: 2px solid #003cff; /* Glowing green border */
+            background: linear-gradient(to right, #0a0a0a, #1a1a2e); 
+            border-bottom: 2px solid #00ffff; 
             padding: 10px 20px;
-            box-shadow: 0 0 10px #003cff; /* Glow effect */
-            gap: 15px; /* Space between elements */
+            box-shadow: 0 0 10px #00ffff; 
+            gap: 15px; 
         }
         .header-img {
-            height: 80px; /* Adjust for your neo.gif size */
+            height: 80px; 
             flex-shrink: 0;
-            border: 1px solid we#d0dad200; /* Optional glow border */
+            border: 1px solid we#d0dad200; 
             border-radius: 5px;
         }
         .header-title {
@@ -188,31 +230,29 @@ header {
         .header-title h1 {
             margin: 0;
             font-size: 2em;
-            text-shadow: 0 0 5px #00ff41; /* Glowing text */
-            color: #0051ff;
-        }
-        .header-subtitle {
-            margin: 0;
-            font-size: 1.2em;
-            color: #808080; /* Dimmer gray */
+            text-shadow: 0 0 5px #00ffff; 
+            color: #0051ff; 
         }
         .image-count {
-            background: #003cff;
+            background: #00ffff;
             color: #000;
             padding: 5px 10px;
             border-radius: 20px;
             font-weight: bold;
-            box-shadow: 0 0 5px #003cff;
-        }
-        main {
-            padding: 20px;
+            box-shadow: 0 0 5px #00ffff;
         }
     </style>
 </head>
 <body>
-    </style>
-</head>
-<body>
+    <div class="music-player-container">
+        <img src="Music/WEBINAR URL PIC.jpg" alt="Album Art" class="album-art" onerror="this.src='WebCore/cd.jpg'">
+
+        <audio controls loop autoplay>
+          <source src="Music/Webinar-URL.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+    </div>
+
     <div class="container">
         <header>     
         <img src="WebCore/Aniwelcome.gif" alt="" onerror="this.src=''" >
@@ -224,7 +264,14 @@ header {
             <img src="WebCore/web.gif" alt="web Icon" class="header-img" onerror="this.src=''">
 
         </header>
-        <!-- CyberPunk Category -->
+
+        <marquee behavior="alternate" scrollamount="4" style="border: 1px solid #00ffff; padding: 5px; color: #00ffff; background: #0a0a0a; margin-bottom: 20px;">
+            WARNING: SITE ONLINE 24/7. BEST VIEWED WITH 800x600 RESOLUTION. 
+            <span class="blinking">FREE GIFS HERE!</span>
+        </marquee>
+
+        <hr>
+
         <section class="category">
             <div class="category-header">
                 <h2>CyberPunk</h2>
@@ -334,7 +381,9 @@ header {
                 </div>
             </div>
         </section>
-        <!-- Wallpapers-Banners-ProfilePics Category -->
+
+        <hr>
+
         <section class="category">
             <div class="category-header">
                 <h2>Wallpapers-Banners-ProfilePics</h2>
@@ -355,7 +404,9 @@ header {
                 </div>
             </div>
         </section>
-        <!-- WebCore Category -->
+
+        <hr>
+
         <section class="category">
             <div class="category-header">
                 <h2>WebCore</h2>
@@ -389,7 +440,9 @@ header {
                 </div>
             </div>
         </section>
-        <!-- GIFs Category -->
+
+        <hr>
+
         <section class="category">
             <div class="category-header">
                 <h2>GIFs</h2>
@@ -434,6 +487,41 @@ header {
                 </div>
             </div>
         </section>
+        
+        <hr>
+
+
+        <footer>
+            <hr style="border-color: #00ffff; margin-top: 40px; margin-bottom: 20px;">
+            
+            <pre style="text-align: center; color: #b3b3ff; font-size: 10px;">
+_.-'¯¯¯`-._
+( █▒█▒█▒█ )
+`--.____.--'
+</pre>
+            <p style="text-align: center; margin: 15px 0; color: #00ffff; font-size: 12px;" class="blinking">
+                This site is 100% W3C Compliant (Probably Not).
+            </p>
+
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img src="WebCore/badge_powered.gif" alt="Powered By" style="height: 31px; border: 1px solid #00ffff; display: inline-block; margin: 0 5px;" onerror="this.style.display='none'">
+                <img src="WebCore/badge_netscape.gif" alt="Netscape Now" style="height: 31px; border: 1px solid #00ffff; display: inline-block; margin: 0 5px;" onerror="this.style.display='none'">
+                <img src="WebCore/hit_counter.gif" alt="Visitors Count" style="height: 20px; border: 1px solid #00ffff; display: inline-block; margin: 0 5px;" onerror="this.style.display='none'">
+                <img src="WebCore/badge_ie.gif" alt="Best Viewed with Internet Explorer" style="height: 31px; border: 1px solid #00ffff; display: inline-block; margin: 0 5px;" onerror="this.style.display='none'">
+            </div>
+            
+            <p style="text-align: center; font-size: 10px; color: #808080;">
+                <span style="color: #00ffff;">LAST UPDATED:</span> 2025-01-28 13:37 PST
+            </p>
+
+        </footer>
     </div>
+    
+    <script>
+      document.addEventListener('contextmenu', event => {
+        alert('ACCESS DENIED. IMAGES ARE PROPERTY OF THIS DOMAIN.');
+        event.preventDefault();
+      });
+    </script>
 </body>
 </html>
